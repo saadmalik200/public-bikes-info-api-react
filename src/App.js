@@ -1,15 +1,12 @@
-import { useEffect, useState } from 'react'
-import './App.css';
+import { useEffect, useState } from "react";
+import "./App.css";
 
 function App() {
-  const [foundProviders, setFoundProviders] = useState([]) 
-  const [allProviders, setAllProviders] = useState([]) 
-  const [searchTerm, setSearchTerm] = useState('')
+  const [foundProviders, setFoundProviders] = useState([]);
+  const [allProviders, setAllProviders] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
-
-  return (
-    <div className="App">Hello World</div>
-  );
+  return <div className="App">Hello World2</div>;
 }
 
 export default App;
