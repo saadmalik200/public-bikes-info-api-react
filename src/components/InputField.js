@@ -15,7 +15,7 @@ const InputField = () => {
   return (
     <div>
       <input
-        placeholder="search"
+        placeholder="Enter a city name"
         value={state.searchTerm}
         onChange={(e) =>
           dispatch({

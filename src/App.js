@@ -14,6 +14,7 @@ function App() {
 
   return (
     <div className="App">
+      <h2 className="text-[3rem]">Public Bikes Info</h2>
       <InputField />
       <SearchMap />
       <FetchData />
