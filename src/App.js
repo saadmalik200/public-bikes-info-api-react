@@ -3,6 +3,7 @@ import "./App.css";
 import { Context } from "./components/Context";
 import FetchData from "./components/FetchData";
 import InputField from "./components/InputField";
+import SearchMap from "./components/SearchMap";
 
 function App() {
   // const { state, dispatch } = useContext(Context);
@@ -14,6 +15,7 @@ function App() {
   return (
     <div className="App">
       <InputField />
+      <SearchMap />
       <FetchData />
     </div>
   );

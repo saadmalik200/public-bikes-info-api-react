@@ -7,17 +7,26 @@ const ContextProvider = ({ children }) => {
     foundProviders: [],
     allProviders: [],
     searchTerm: "",
+    center: [45.4642, 9.19],
   };
 
   const reducer = (state, action) => {
     switch (action.type) {
       case "setFoundProviders":
-        return;
+        return {};
       case "setAllProviders":
         return { ...state, allProviders: [...action.payload] };
       case "setSearchTerm":
-        console.log(action.payload);
-        return { ...state, searchTerm: action.payload };
+        console.log(action.payload.search);
+        const lat = action.payload.filter[0]?.location?.latitude;
+        const lng = action.payload.filter[0]?.location?.longitude;
+
+        return {
+          ...state,
+          searchTerm: action.payload.search,
+          allProviders: [...action.payload.filter],
+          center: [lat, lng],
+        };
       default:
         return state;
     }
