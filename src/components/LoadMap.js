@@ -9,7 +9,15 @@ export function MyMap() {
   const { state, dispatch } = useContext(Context);
   const [markerClick, setMarkerClick] = useState(false);
   const [center, setCenter] = useState([]);
+  const [item, setItem] = useState("");
 
+  const handleClick = (item) => {
+    setMarkerClick(!markerClick);
+    setItem(item);
+  };
+
+  console.log(item);
+  console.log(state.foundProviders);
   return (
     <div>
       <Map height={600} defaultZoom={11} center={state.center}>
@@ -18,16 +26,18 @@ export function MyMap() {
             key={i}
             width={50}
             anchor={[item?.location?.latitude, item?.location?.longitude]}
-            onClick={() => {
-              setMarkerClick(true);
-            }}
+            onClick={() => handleClick(item)}
           />
         ))}
-        <ZoomControl />
-        <Overlay anchor={[50.879, 4.6997]} offset={[120, 79]}>
-          <img src="../logo.svg" width={240} height={158} alt="" />
-          {/* {markerClick && <p>{"Hello"}</p>} */}
+        <Overlay anchor={state.center} offset={[50, 200]}>
+          {markerClick &&
+            state.foundProviders.map((item, i) => (
+              <p key={i} style={{ fontSize: "3rem" }} className="text-3rem">
+                {item.name}
+              </p>
+            ))}
         </Overlay>
+        <ZoomControl />
       </Map>
       <div>
         {state.foundProviders.length === 0
