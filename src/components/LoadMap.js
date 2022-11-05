@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Map, Marker, ZoomControl } from "pigeon-maps";
+import { Map, Marker, ZoomControl, Overlay } from "pigeon-maps";
 import { useContext } from "react";
 import { Context } from "./Context";
 import { useState } from "react";
@@ -8,23 +8,11 @@ import { useState } from "react";
 export function MyMap() {
   const { state, dispatch } = useContext(Context);
   const [markerClick, setMarkerClick] = useState(false);
-  const [center, setCenter] = useState([45.4642, 9.19]);
-  //   console.log(state.allProviders[0]);
-  // setCenter(state.allProviders.location)
+  const [center, setCenter] = useState([]);
 
-  //   const lat = state.allProviders[0]?.location?.latitude;
-  //   const lng = state.allProviders[0]?.location?.longitude;
-  console.log(state);
   return (
     <div>
-      <Map
-        height={600}
-        defaultZoom={10}
-        center={state.center}
-        onBoundsChanged={({ center }) => {
-          setCenter(center);
-        }}
-      >
+      <Map height={600} defaultZoom={11} center={state.center}>
         {state.allProviders.map((item, i) => (
           <Marker
             key={i}
@@ -36,14 +24,23 @@ export function MyMap() {
           />
         ))}
         <ZoomControl />
-        {/* {markerClick && <p>{"Hello"}</p>} */}
+        <Overlay anchor={[50.879, 4.6997]} offset={[120, 79]}>
+          <img src="../logo.svg" width={240} height={158} alt="" />
+          {/* {markerClick && <p>{"Hello"}</p>} */}
+        </Overlay>
       </Map>
       <div>
-        {state.allProviders.map((item, i) => (
-          <p key={i}>
-            {item.name} {item.location.city}
-          </p>
-        ))}
+        {state.foundProviders.length === 0
+          ? state.allProviders.map((item, i) => (
+              <p key={i}>
+                {item.name} {item.location.city}
+              </p>
+            ))
+          : state.foundProviders.map((item, i) => (
+              <p key={i}>
+                {item.name} {item.location.city}
+              </p>
+            ))}
       </div>
     </div>
   );

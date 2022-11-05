@@ -14,17 +14,18 @@ const ContextProvider = ({ children }) => {
     switch (action.type) {
       case "setFoundProviders":
         return {};
+
       case "setAllProviders":
         return { ...state, allProviders: [...action.payload] };
+
       case "setSearchTerm":
-        console.log(action.payload.search);
         const lat = action.payload.filter[0]?.location?.latitude;
         const lng = action.payload.filter[0]?.location?.longitude;
 
         return {
           ...state,
           searchTerm: action.payload.search,
-          allProviders: [...action.payload.filter],
+          foundProviders: [...action.payload.filter],
           center: [lat, lng],
         };
       default:
