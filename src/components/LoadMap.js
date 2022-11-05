@@ -7,7 +7,7 @@ import { Context } from "./Context";
 export function MyMap() {
   const { state, dispatch } = useContext(Context);
 
-  console.log(state.allProviders[0]);
+  //   console.log(state.allProviders[0]);
 
   return (
     <div>
@@ -21,14 +21,13 @@ export function MyMap() {
         ))}
         <ZoomControl />
       </Map>
-      <div>{state.allProviders.map((item, i) => item.id)}</div>
+      <div>
+        {state.allProviders.map((item, i) => (
+          <p key={i}>
+            {item.name} {item.location.city}
+          </p>
+        ))}
+      </div>
     </div>
   );
 }
-
-// const LoadMap = (props) => {
-//   console.log(props.data);
-//   return <div>LoadMap</div>;
-// };
-
-// export default LoadMap;
