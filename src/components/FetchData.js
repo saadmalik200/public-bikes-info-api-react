@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useContext } from "react";
 import { Context } from "./Context";
-import LoadMap from "./LoadMap";
+import { MyMap } from "./LoadMap";
 
 const FetchData = () => {
   const { state, dispatch } = useContext(Context);
@@ -18,7 +18,7 @@ const FetchData = () => {
 
   return (
     <div>
-      <LoadMap data={state.allProviders} />
+      <MyMap />
     </div>
   );
 };

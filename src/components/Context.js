@@ -16,7 +16,8 @@ const ContextProvider = ({ children }) => {
       case "setAllProviders":
         return { ...state, allProviders: [...action.payload] };
       case "setSearchTerm":
-        return;
+        console.log(action.payload);
+        return { ...state, searchTerm: action.payload };
       default:
         return state;
     }
