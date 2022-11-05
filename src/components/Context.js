@@ -8,6 +8,7 @@ const ContextProvider = ({ children }) => {
     allProviders: [],
     searchTerm: "",
     center: [45.4642, 9.19],
+    zoom: 8,
   };
 
   const reducer = (state, action) => {
@@ -27,6 +28,7 @@ const ContextProvider = ({ children }) => {
           searchTerm: action.payload.search,
           foundProviders: [...action.payload.filter],
           center: [lat, lng],
+          zoom: 8,
         };
       default:
         return state;
